@@ -280,7 +280,7 @@ ul {
 
 .logo-img {
   width: auto;
-  height: 42px;
+  height: 64px;
   max-height: 100%;
   object-fit: contain;
   margin-bottom: 2px;
@@ -293,45 +293,19 @@ ul {
   /* Fallback assumption: if it's white, make it dark grey. If it's already dark, remove this rule. */
 }
 
-.logo-wordmark {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.25rem;
-  font-weight: 300;
-  color: #ffffff;
-  letter-spacing: 0.15em;
-  text-transform: lowercase;
-  transition: color 0.4s;
-}
-
-#site-header.scrolled .logo-wordmark {
-  color: var(--accent);
-}
-
-.logo-sub {
-  font-family: var(--sans);
-  font-size: 0.6rem;
-  letter-spacing: 0.15em;
-  color: #ffffff;
-  opacity: 0.8;
-  text-transform: lowercase;
+.logo-text-img {
+  width: auto;
+  height: 54px;
+  object-fit: contain;
   margin-top: 2px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  transition: filter 0.4s ease;
+  /* Make the dark text logo completely white over the dark hero background */
+  filter: brightness(0) invert(1);
 }
 
-.logo-sub::before,
-.logo-sub::after {
-  content: '';
-  display: block;
-  width: 24px;
-  height: 1px;
-  background-color: currentColor;
-  opacity: 0.5;
-}
-
-#site-header.scrolled .logo-sub {
-  color: var(--text-muted);
+/* Return the logotext.png to its original dark color on scroll */
+#site-header.scrolled .logo-text-img {
+  filter: none;
 }
 
 
@@ -703,9 +677,9 @@ ul {
   position: absolute;
   inset: 0;
   z-index: 1;
-  /* Added a top gradient to make the transparent navbar text pop against light walls */
+  /* Added a top gradient 'Invisible Shadow' to make the transparent navbar pop */
   background: 
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 25%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.15) 25%, rgba(0, 0, 0, 0) 40%),
     linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 60%),
     linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 25%);
   pointer-events: none;
