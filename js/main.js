@@ -60,7 +60,53 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const el = document.querySelector(id);
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // If it's a mobile nav link, close the drawer
+        if (a.classList.contains('mobile-nav-link') || a.classList.contains('mobile-sub-link') || a.classList.contains('mobile-cta')) {
+          closeMobileMenu();
+        }
       }
     });
   });
+
+  /* ── Mobile Menu Logic ───────────────────────────────── */
+  const mobileMenuBtn = document.querySelector('.hdr-menu-btn');
+  const mobileMenuDrawer = document.getElementById('mobileMenu');
+  
+  if (mobileMenuBtn && mobileMenuDrawer) {
+    const closeBtn = mobileMenuDrawer.querySelector('.mobile-close-btn');
+
+    const openMobileMenu = () => {
+      mobileMenuDrawer.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeMobileMenu = () => {
+      mobileMenuDrawer.classList.remove('is-open');
+      document.body.style.overflow = '';
+    };
+
+    mobileMenuBtn.addEventListener('click', openMobileMenu);
+    if (closeBtn) closeBtn.addEventListener('click', closeMobileMenu);
+
+    // Accordion Toggle Logic
+    const accordionToggles = mobileMenuDrawer.querySelectorAll('.accordion-toggle');
+    accordionToggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const content = toggle.nextElementSibling;
+        const arrow = toggle.querySelector('.arr');
+        
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          toggle.classList.remove('active');
+          if(arrow) arrow.textContent = '▼';
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          toggle.classList.add('active');
+          if(arrow) arrow.textContent = '▲';
+        }
+      });
+    });
+  }
 });

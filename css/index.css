@@ -1388,7 +1388,9 @@ header,
 }
 
 @media (max-width: 768px) {
-  .hdr-nav {
+  .hdr-nav,
+  .hdr-bottom-nav,
+  .cta-anchor {
     display: none;
   }
 
@@ -1775,4 +1777,124 @@ header,
   .testim-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ── MOBILE MENU DRAWER ──────────────────────────────────────── */
+.mobile-menu-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #F9F8F6; /* Warm alabaster */
+  padding: 100px 5% 40px;
+  display: flex;
+  flex-direction: column;
+  z-index: 9999;
+  transform: translateY(-100%);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+}
+
+.mobile-menu-drawer.is-open {
+  transform: translateY(0);
+}
+
+.mobile-close-btn {
+  position: absolute;
+  top: 20px;
+  right: calc(5% - 8px);
+  background: none;
+  border: none;
+  color: #1A1A1A;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-menu-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  flex-grow: 1;
+}
+
+.mobile-nav-link {
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #1A1A1A;
+  margin-bottom: 28px;
+  text-decoration: none;
+  display: block;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 0;
+  font-family: var(--sans);
+}
+
+.mobile-accordion {
+  width: 100%;
+}
+
+.accordion-toggle {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  cursor: pointer;
+}
+
+.accordion-toggle .arr {
+  font-size: 10px;
+  opacity: 0.5;
+  font-weight: 300;
+  transition: transform 0.3s ease;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+
+.mobile-sub-link {
+  font-size: 15px;
+  font-weight: 300;
+  color: #555555;
+  padding-left: 15px;
+  margin-bottom: 24px;
+  display: block;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+
+.mobile-cta {
+  margin-top: auto;
+  text-align: center;
+  width: 100%;
+  border: 1px solid var(--text);
+  color: var(--text);
+  padding: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.mobile-cta:hover {
+  background: var(--text);
+  color: #fff;
 }
