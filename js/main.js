@@ -109,4 +109,47 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  /* ── Hero Slider Logic ───────────────────────────────── */
+  const slides = document.querySelectorAll('.hero-slide');
+  const indicators = document.querySelectorAll('.indicator');
+  let currentSlide = 0;
+  let slideInterval;
+
+  if (slides.length > 0 && indicators.length > 0) {
+    const goToSlide = (index) => {
+      // Remove active from all
+      slides.forEach(s => s.classList.remove('active'));
+      indicators.forEach(i => i.classList.remove('active'));
+      
+      // Add active to current
+      currentSlide = index;
+      slides[currentSlide].classList.add('active');
+      indicators[currentSlide].classList.add('active');
+    };
+
+    const nextSlide = () => {
+      goToSlide((currentSlide + 1) % slides.length);
+    };
+
+    // Auto slide every 6 seconds
+    const startSlider = () => {
+      slideInterval = setInterval(nextSlide, 6000);
+    };
+
+    const resetSlider = () => {
+      clearInterval(slideInterval);
+      startSlider();
+    };
+
+    // Manual click
+    indicators.forEach((ind, index) => {
+      ind.addEventListener('click', () => {
+        goToSlide(index);
+        resetSlider();
+      });
+    });
+
+    startSlider();
+  }
 });
