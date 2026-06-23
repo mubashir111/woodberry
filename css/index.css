@@ -26,11 +26,13 @@
   --border-soft: rgba(41, 32, 26, 0.09);
 
   /* Hero overlay — pulled from reference: heavy warm sepia left, fades right */
-  --hero-gradient: linear-gradient(102deg,
-      rgba(22, 12, 4, 0.86) 0%,
-      rgba(22, 12, 4, 0.64) 32%,
-      rgba(22, 12, 4, 0.28) 58%,
-      rgba(22, 12, 4, 0.05) 100%);
+  --hero-gradient: linear-gradient(
+    102deg,
+    rgba(22, 12, 4, 0.86) 0%,
+    rgba(22, 12, 4, 0.64) 32%,
+    rgba(22, 12, 4, 0.28) 58%,
+    rgba(22, 12, 4, 0.05) 100%
+  );
 
   /* Font families — matched to reference image */
   --serif: "Cormorant Garamond", "Garamond", Georgia, serif;
@@ -284,11 +286,19 @@ ul {
 
 .logo-img {
   width: auto;
-  height: 64px;
+  height: 72px; /* Increased from 64px */
   max-height: 100%;
   object-fit: contain;
   margin-bottom: 2px;
-  transition: filter 0.4s ease;
+  filter: drop-shadow(
+    0 4px 6px rgba(0, 0, 0, 0.3)
+  ); /* Added highlight drop shadow */
+  transition: all 0.4s ease;
+}
+
+.hdr-logo:hover .logo-img {
+  transform: scale(1.05);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
 }
 
 /* If the logo is white, we might need to invert it or make it darker on scrolled state */
@@ -575,7 +585,8 @@ ul {
   margin-top: 4px;
 }
 
-.mega-img-link {}
+.mega-img-link {
+}
 
 #site-header.scrolled .hdr-nav-link {
   color: var(--text-muted);
@@ -698,14 +709,18 @@ ul {
   z-index: 1;
   /* Added a top gradient 'Invisible Shadow' to make the transparent navbar pop */
   background:
-    linear-gradient(to bottom,
+    linear-gradient(
+      to bottom,
       rgba(0, 0, 0, 0.5) 0%,
       rgba(0, 0, 0, 0.15) 25%,
-      rgba(0, 0, 0, 0) 40%),
-    linear-gradient(to right,
+      rgba(0, 0, 0, 0) 40%
+    ),
+    linear-gradient(
+      to right,
       rgba(0, 0, 0, 0.75) 0%,
       rgba(0, 0, 0, 0.4) 40%,
-      rgba(0, 0, 0, 0) 75%),
+      rgba(0, 0, 0, 0) 75%
+    ),
     linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 25%);
   pointer-events: none;
 }
@@ -734,7 +749,7 @@ ul {
 }
 
 /* constrain text block */
-.hero-body>* {
+.hero-body > * {
   max-width: 650px;
   opacity: 0;
   animation: fadeUpPremium 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -893,10 +908,12 @@ ul {
   width: 580px;
   height: 580px;
   border-radius: 50%;
-  background-image: repeating-radial-gradient(circle at center,
-      transparent 0,
-      transparent 22px,
-      rgba(155, 108, 66, 0.055) 23px);
+  background-image: repeating-radial-gradient(
+    circle at center,
+    transparent 0,
+    transparent 22px,
+    rgba(155, 108, 66, 0.055) 23px
+  );
   pointer-events: none;
   z-index: 0;
 }
@@ -943,12 +960,13 @@ ul {
 /* Collection card footer — solid beige bar like the reference */
 .coll-card-foot {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 11px 10px;
-  background: var(--bg-card);
-  border-radius: 0 0 6px 6px;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 16px 0 0 0;
+  background: transparent;
   margin-top: 0;
+  gap: 4px;
 }
 
 .coll-img-wrap {
@@ -1030,10 +1048,12 @@ ul {
   width: 520px;
   height: 520px;
   border-radius: 50%;
-  background-image: repeating-radial-gradient(circle at center,
-      transparent 0,
-      transparent 22px,
-      rgba(156, 107, 66, 0.07) 23px);
+  background-image: repeating-radial-gradient(
+    circle at center,
+    transparent 0,
+    transparent 22px,
+    rgba(156, 107, 66, 0.07) 23px
+  );
   pointer-events: none;
 }
 
@@ -1454,7 +1474,6 @@ header,
 }
 
 @media (max-width: 768px) {
-
   .hdr-nav,
   .hdr-bottom-nav,
   .cta-anchor {
@@ -1521,12 +1540,10 @@ header,
 .service-card:hover {
   transform: translateY(-4px);
 }
-
 .service-img {
   position: relative;
   z-index: 1;
 }
-
 .service-img img {
   width: 100%;
   aspect-ratio: 4/3;
@@ -1577,6 +1594,8 @@ header,
   position: relative;
   padding-left: 0;
 }
+
+/* Process */
 
 /* Process */
 .process-steps {
@@ -1771,39 +1790,74 @@ header,
 }
 
 .testim-card {
-  background: var(--bg-card);
-  padding: 32px;
-  border-radius: 4px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 0;
   display: flex;
   flex-direction: column;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+  overflow: hidden;
+}
+
+.testim-card::before {
+  content: "”";
+  position: absolute;
+  top: -20px;
+  right: 20px;
+  font-family: var(--serif);
+  font-size: 8rem;
+  color: var(--accent);
+  opacity: 0.1;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.testim-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
 }
 
 .testim-stars {
   display: flex;
   gap: 4px;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
 }
 
 .testim-text {
-  font-size: var(--f-body);
-  color: var(--text-muted);
+  font-size: 1.1rem;
+  font-family: var(--serif);
+  color: var(--text);
+  font-style: italic;
   flex-grow: 1;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
 }
 
 .testim-client {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 24px;
+  margin-top: 32px;
   padding-top: 24px;
-  border-top: 1px solid rgba(41, 32, 26, 0.06);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 1;
 }
 
 .testim-name {
   font-family: var(--serif);
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 500;
   color: var(--text);
+  line-height: 1.4;
 }
 
 .testim-avatar {
@@ -1895,7 +1949,6 @@ header,
 }
 
 @media (max-width: 900px) {
-
   .services-grid,
   .portfolio-grid,
   .testim-grid {
@@ -2097,8 +2150,8 @@ header,
   transition: all 0.3s ease;
 }
 
-.form-input:focus~.form-label,
-.form-input:not(:placeholder-shown)~.form-label {
+.form-input:focus ~ .form-label,
+.form-input:not(:placeholder-shown) ~ .form-label {
   top: -12px;
   font-size: 0.75rem;
   color: var(--accent);
@@ -2186,9 +2239,9 @@ header,
    MASONRY GALLERY
    ======================================== */
 .masonry-gallery-wrap {
-  margin-top: 80px;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  padding-top: 80px;
+  margin: 80px auto 0;
+  max-width: var(--max-w);
+  padding: 80px var(--gutter) 0;
 }
 
 .masonry-title {
@@ -2245,4 +2298,94 @@ header,
   .masonry-grid {
     column-count: 1;
   }
+}
+
+/* Gallery Filters */
+.gallery-filters {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 64px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: transparent;
+  border: none;
+  font-family: var(--sans);
+  font-size: var(--f-label);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 8px 0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.filter-btn::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background-color: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.filter-btn:hover {
+  color: var(--text);
+}
+
+.filter-btn.active {
+  color: var(--text);
+}
+
+.filter-btn.active::after {
+  width: 100%;
+}
+
+/* Timeline Icons */
+.tl-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--accent);
+  margin-bottom: 16px;
+  opacity: 0.8;
+  transition: transform 0.4s ease;
+}
+
+.timeline-card:hover .tl-icon {
+  transform: scale(1.1) translateY(-4px);
+  color: var(--text);
+}
+
+/* Base state for coll-card transitions (filtering) */
+.coll-card {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Force varying heights for a true masonry effect */
+.masonry-item:nth-child(5n + 1) img {
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+.masonry-item:nth-child(5n + 2) img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.masonry-item:nth-child(5n + 3) img {
+  aspect-ratio: 1 / 1.2;
+  object-fit: cover;
+}
+.masonry-item:nth-child(5n + 4) img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+.masonry-item:nth-child(5n + 5) img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 }
