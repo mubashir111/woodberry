@@ -2296,7 +2296,25 @@ header,
 
 @media (max-width: 600px) {
   .masonry-grid {
-    column-count: 1;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding-bottom: 24px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .masonry-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .masonry-item {
+    min-width: 80vw;
+    scroll-snap-align: center;
+    margin-bottom: 0; /* Override masonry vertical margin */
+  }
+  .masonry-item img {
+    height: 400px; /* Fixed height so the horizontal row looks neat */
+    object-fit: cover;
   }
 }
 
@@ -2388,4 +2406,45 @@ header,
 .masonry-item:nth-child(5n + 5) img {
   aspect-ratio: 1 / 1;
   object-fit: cover;
+}
+
+/* Masonry Overlay */
+.masonry-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 24px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: #fff;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+}
+
+.masonry-overlay span {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.masonry-item:hover .masonry-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+  .masonry-overlay {
+    opacity: 1;
+    transform: translateY(0);
+    padding: 16px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  }
 }
