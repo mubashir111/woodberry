@@ -63,9 +63,9 @@
   --s3: 24px;
   --s4: 32px;
   --s5: 48px;
-  --s6: 64px;
-  --s7: 88px;
-  --s8: 128px;
+  --s6: 48px;
+  --s7: 64px;
+  --s8: 96px;
 
   /* Layout */
   --max-w: 1240px;
@@ -1668,8 +1668,8 @@ header,
 }
 
 .q-icon svg {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
 }
 
 .q-text {
@@ -2447,4 +2447,35 @@ header,
     padding: 16px;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
   }
+}
+
+@media (min-width: 900px) {
+  .hero-content {
+    padding-left: 60px;
+  }
+}
+
+.testimonial-card::before {
+  content: '"';
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-family: var(--serif);
+  font-size: 120px;
+  color: var(--accent);
+  opacity: 0.15;
+  line-height: 1;
+}
+
+/* Scroll Animations */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
