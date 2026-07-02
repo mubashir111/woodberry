@@ -152,4 +152,73 @@ document.addEventListener('DOMContentLoaded', () => {
 
     startSlider();
   }
+
+  /* ── Contact Form AJAX ───────────────────────────────── */
+  function checkmail(input) {
+    var pattern1 = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    if (pattern1.test(input)) { return true; } else { return false; }
+  }
+
+  window.proceed = function() {
+    var name = document.getElementById("name");
+    var email = document.getElementById("email");
+    var phone = document.getElementById("phone");
+    var msg = document.getElementById("message");
+    
+    if (name.value == "") {
+      name.focus();
+      return false;
+    }
+    else if (email.value == "") {
+      email.focus();
+      return false;
+    }
+    else if (checkmail(email.value.trim()) == false) {
+      alert('Please provide a valid email address.');
+      return false;
+    }
+    else if (msg.value == "") {
+      msg.focus();
+      return false;
+    }
+    else {
+      var contactForm = document.getElementById("contactForm");
+      var formData = new FormData(contactForm);
+      
+      fetch("php/submit.php", {
+        method: "POST",
+        body: formData
+      })
+      .then(response => response.text())
+      .then(msgResponse => {
+        if (msgResponse) {
+          // Fade out form
+          contactForm.style.transition = "opacity 1s";
+          contactForm.style.opacity = "0";
+          setTimeout(() => {
+            contactForm.style.display = "none";
+            // Fade in message
+            var contactMsg = document.getElementById("contact_message");
+            if(contactMsg) {
+              contactMsg.style.display = "block";
+              contactMsg.style.opacity = "0";
+              contactMsg.style.transition = "opacity 1s";
+              setTimeout(() => { contactMsg.style.opacity = "1"; }, 10);
+            }
+          }, 1000);
+          
+          // Execute scripts returned by PHP
+          var tempDiv = document.createElement('div');
+          tempDiv.innerHTML = msgResponse;
+          var scripts = tempDiv.getElementsByTagName('script');
+          for(var i = 0; i < scripts.length; i++) {
+            eval(scripts[i].innerText);
+          }
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  };
 });
