@@ -11,8 +11,8 @@ require '../vendor/autoload.php';
 // CONFIGURATION (UPDATE THESE VALUES)
 // ==========================================
 $gmail_username = 'muba4shir@gmail.com'; // e.g. woodberrydesigns@gmail.com
-$gmail_app_password = 'vthsvermucinmwqx';        // 16-character App Password from Google
-$receive_email = 'info@woodberrydesigns.com';     // Where you want to receive the inquiries
+$gmail_app_password = 'vthsvermucinmwqx';        // website 2 16-character App Password from Google
+$receive_email = 'woodberrycalicut@gmail.com';     // Where you want to receive the inquiries
 // ==========================================
 
 $mail = new PHPMailer(true);
@@ -27,12 +27,12 @@ try {
     // Server settings
     // $mail->SMTPDebug = SMTP::DEBUG_SERVER;      // Enable verbose debug output (uncomment for troubleshooting)
     $mail->isSMTP();                               // Send using SMTP
-    $mail->Host       = 'smtp.gmail.com';          // Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                      // Enable SMTP authentication
-    $mail->Username   = $gmail_username;           // SMTP username
-    $mail->Password   = $gmail_app_password;       // SMTP password
+    $mail->Host = 'smtp.gmail.com';          // Set the SMTP server to send through
+    $mail->SMTPAuth = true;                      // Enable SMTP authentication
+    $mail->Username = $gmail_username;           // SMTP username
+    $mail->Password = $gmail_app_password;       // SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption
-    $mail->Port       = 587;                       // TCP port to connect to
+    $mail->Port = 587;                       // TCP port to connect to
 
     // Recipients
     // The "From" address must be your Gmail address when using Gmail SMTP to avoid being marked as spam
@@ -45,7 +45,7 @@ try {
     // Content
     $mail->isHTML(false);                          // Set email format to plain text
     $mail->Subject = 'Contact Inquiry: ' . $name;
-    
+
     $body_message = "Name: " . $name . "\r\n";
     $body_message .= "Email: " . $from . "\r\n";
     $body_message .= "Phone: " . $phone . "\r\n";
