@@ -12,7 +12,7 @@ require '../vendor/autoload.php';
 // ==========================================
 $gmail_username = 'muba4shir@gmail.com'; // e.g. woodberrydesigns@gmail.com
 $gmail_app_password = 'vthsvermucinmwqx';        // 16-character App Password from Google
-$receive_email = 'muba4shir@gmail.com';     // Where you want to receive the inquiries
+$receive_email = 'info@woodberrydesigns.com';     // Where you want to receive the inquiries
 // ==========================================
 
 $mail = new PHPMailer(true);
