@@ -881,7 +881,7 @@ ul {
   display: grid;
   grid-template-columns: 5fr 7fr;
   gap: clamp(40px, 6vw, 96px);
-  align-items: center;
+  align-items: stretch;
 }
 
 .philosophy-text {
@@ -891,7 +891,7 @@ ul {
 
 .philosophy-media img {
   width: 100%;
-  aspect-ratio: 16/10;
+  height: 100%;
   object-fit: cover;
   /* Fix 3: warm-tinted, ultra-soft shadow blends naturally into the linen canvas */
   border-radius: 8px;
