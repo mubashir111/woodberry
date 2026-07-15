@@ -26,13 +26,11 @@
   --border-soft: rgba(41, 32, 26, 0.09);
 
   /* Hero overlay — pulled from reference: heavy warm sepia left, fades right */
-  --hero-gradient: linear-gradient(
-    102deg,
-    rgba(22, 12, 4, 0.86) 0%,
-    rgba(22, 12, 4, 0.64) 32%,
-    rgba(22, 12, 4, 0.28) 58%,
-    rgba(22, 12, 4, 0.05) 100%
-  );
+  --hero-gradient: linear-gradient(102deg,
+      rgba(22, 12, 4, 0.86) 0%,
+      rgba(22, 12, 4, 0.64) 32%,
+      rgba(22, 12, 4, 0.28) 58%,
+      rgba(22, 12, 4, 0.05) 100%);
 
   /* Font families — matched to reference image */
   --serif: "Cormorant Garamond", "Garamond", Georgia, serif;
@@ -286,13 +284,13 @@ ul {
 
 .logo-img {
   width: auto;
-  height: 72px; /* Increased from 64px */
+  height: 72px;
+  /* Increased from 64px */
   max-height: 100%;
   object-fit: contain;
   margin-bottom: 2px;
-  filter: drop-shadow(
-    0 4px 6px rgba(0, 0, 0, 0.3)
-  ); /* Added highlight drop shadow */
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+  /* Added highlight drop shadow */
   transition: all 0.4s ease;
 }
 
@@ -585,8 +583,7 @@ ul {
   margin-top: 4px;
 }
 
-.mega-img-link {
-}
+.mega-img-link {}
 
 #site-header.scrolled .hdr-nav-link {
   color: var(--text-muted);
@@ -709,18 +706,14 @@ ul {
   z-index: 1;
   /* Added a top gradient 'Invisible Shadow' to make the transparent navbar pop */
   background:
-    linear-gradient(
-      to bottom,
+    linear-gradient(to bottom,
       rgba(0, 0, 0, 0.5) 0%,
       rgba(0, 0, 0, 0.15) 25%,
-      rgba(0, 0, 0, 0) 40%
-    ),
-    linear-gradient(
-      to right,
+      rgba(0, 0, 0, 0) 40%),
+    linear-gradient(to right,
       rgba(0, 0, 0, 0.75) 0%,
       rgba(0, 0, 0, 0.4) 40%,
-      rgba(0, 0, 0, 0) 75%
-    ),
+      rgba(0, 0, 0, 0) 75%),
     linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 25%);
   pointer-events: none;
 }
@@ -749,7 +742,7 @@ ul {
 }
 
 /* constrain text block */
-.hero-body > * {
+.hero-body>* {
   max-width: 650px;
   opacity: 0;
   animation: fadeUpPremium 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -908,12 +901,10 @@ ul {
   width: 580px;
   height: 580px;
   border-radius: 50%;
-  background-image: repeating-radial-gradient(
-    circle at center,
-    transparent 0,
-    transparent 22px,
-    rgba(155, 108, 66, 0.055) 23px
-  );
+  background-image: repeating-radial-gradient(circle at center,
+      transparent 0,
+      transparent 22px,
+      rgba(155, 108, 66, 0.055) 23px);
   pointer-events: none;
   z-index: 0;
 }
@@ -1048,12 +1039,10 @@ ul {
   width: 520px;
   height: 520px;
   border-radius: 50%;
-  background-image: repeating-radial-gradient(
-    circle at center,
-    transparent 0,
-    transparent 22px,
-    rgba(156, 107, 66, 0.07) 23px
-  );
+  background-image: repeating-radial-gradient(circle at center,
+      transparent 0,
+      transparent 22px,
+      rgba(156, 107, 66, 0.07) 23px);
   pointer-events: none;
 }
 
@@ -1398,8 +1387,8 @@ ul {
     grid-template-columns: 1fr;
   }
 
-  .craft-photo img {
-    min-height: 400px;
+  .craft-photo {
+    display: none;
   }
 
   .craft-content {
@@ -1474,6 +1463,7 @@ header,
 }
 
 @media (max-width: 768px) {
+
   .hdr-nav,
   .hdr-bottom-nav,
   .cta-anchor {
@@ -1540,10 +1530,12 @@ header,
 .service-card:hover {
   transform: translateY(-4px);
 }
+
 .service-img {
   position: relative;
   z-index: 1;
 }
+
 .service-img img {
   width: 100%;
   aspect-ratio: 4/3;
@@ -1949,10 +1941,21 @@ header,
 }
 
 @media (max-width: 900px) {
+
   .services-grid,
   .portfolio-grid,
   .testim-grid {
     grid-template-columns: 1fr;
+  }
+
+  .service-img {
+    margin-left: calc(-1 * var(--gutter));
+    margin-right: calc(-1 * var(--gutter));
+  }
+
+  .service-img img {
+    border-radius: 0;
+    aspect-ratio: auto;
   }
 }
 
@@ -2150,8 +2153,8 @@ header,
   transition: all 0.3s ease;
 }
 
-.form-input:focus ~ .form-label,
-.form-input:not(:placeholder-shown) ~ .form-label {
+.form-input:focus~.form-label,
+.form-input:not(:placeholder-shown)~.form-label {
   top: -12px;
   font-size: 0.75rem;
   color: var(--accent);
@@ -2304,16 +2307,21 @@ header,
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
   .masonry-grid::-webkit-scrollbar {
     display: none;
   }
+
   .masonry-item {
     min-width: 80vw;
     scroll-snap-align: center;
-    margin-bottom: 0; /* Override masonry vertical margin */
+    margin-bottom: 0;
+    /* Override masonry vertical margin */
   }
+
   .masonry-item img {
-    height: 400px; /* Fixed height so the horizontal row looks neat */
+    height: 400px;
+    /* Fixed height so the horizontal row looks neat */
     object-fit: cover;
   }
 }
@@ -2391,18 +2399,22 @@ header,
   aspect-ratio: 3 / 4;
   object-fit: cover;
 }
+
 .masonry-item:nth-child(5n + 2) img {
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
+
 .masonry-item:nth-child(5n + 3) img {
   aspect-ratio: 1 / 1.2;
   object-fit: cover;
 }
+
 .masonry-item:nth-child(5n + 4) img {
   aspect-ratio: 16 / 9;
   object-fit: cover;
 }
+
 .masonry-item:nth-child(5n + 5) img {
   aspect-ratio: 1 / 1;
   object-fit: cover;
@@ -2475,6 +2487,7 @@ header,
     opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
     transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .fade-up.is-visible {
   opacity: 1;
   transform: translateY(0);
@@ -2486,6 +2499,7 @@ header,
     gap: 40px;
     text-align: center;
   }
+
   .tailored-icons {
     flex-wrap: wrap;
     justify-content: center;
