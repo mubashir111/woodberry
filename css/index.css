@@ -1400,6 +1400,15 @@ ul {
     gap: 40px;
   }
 
+  .philosophy-media {
+    margin-left: calc(-1 * var(--gutter));
+    margin-right: calc(-1 * var(--gutter));
+  }
+
+  .philosophy-media img {
+    border-radius: 0;
+  }
+
   .coll-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1948,9 +1957,15 @@ header,
     grid-template-columns: 1fr;
   }
 
-  .service-img {
+  .service-card {
     margin-left: calc(-1 * var(--gutter));
     margin-right: calc(-1 * var(--gutter));
+    overflow: visible;
+  }
+
+  .service-content {
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
   }
 
   .service-img img {
